@@ -14,7 +14,7 @@ class TestEmployeeManagement {
   
   @Test
   public void testEmployeeAddition() {
-    Employee emp = new Employee("1", "Jimothy Dough");
+    Employee emp = new Employee("1", "Jimothy Dough", null, null);
     employeeManager.addEmployee(emp);
     Employee retrievedEmployee = employeeManager.getEmployee("1");
     assertNotNull(retrievedEmployee);
@@ -23,7 +23,7 @@ class TestEmployeeManagement {
   
   @Test
   public void testEmployeeRetrieval() {
-    Employee emp = new Employee("2", "Jimian Dougheth");
+    Employee emp = new Employee("2", "Jimian Dougheth", null, null);
     employeeManager.addEmployee(emp);
     Employee retrievedEmployee = employeeManager.getEmployee("2");
     assertNotNull(retrievedEmployee);
@@ -32,7 +32,7 @@ class TestEmployeeManagement {
   
   @Test
   public void testEmployeeDeletion() {
-    Employee emp = new Employee("3", "Jiminy Doughethness");
+    Employee emp = new Employee("3", "Jiminy Doughethness", null, null);
     employeeManager.addEmployee(emp);
     employeeManager.removeEmployee("3");
     Employee retrievedEmployee = employeeManager.getEmployee("3");
