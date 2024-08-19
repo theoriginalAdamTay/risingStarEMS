@@ -5,6 +5,9 @@ public class Employee {
   private String name;
   private String position;
   private String department;
+  
+  public Employee() {
+  }
 
   public Employee(String id, String name, String position, String department) {
     this.id = id;
