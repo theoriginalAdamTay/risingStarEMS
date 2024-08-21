@@ -1,6 +1,7 @@
 package risingStarEMS;
 
 import java.util.List;
+import java.util.Optional;
 
 public class EmployeeService {
   private final EmployeeRepository employeeRepository;
@@ -9,34 +10,33 @@ public class EmployeeService {
     this.employeeRepository = employeeRepository;
   }
   
-  public Employee addEmployee(String name, String position, String department) {
-    Employee employee = new Employee();
-    employee.setName(name);
-    employee.setPosition(position);
-    employee.setDepartment(department);
+  public Employee addEmployee(String id, String name, String position, String department) {
+    Employee employee = new Employee(id, name, position, department);
     return employeeRepository.save(employee);
   }
   
-  public Employee getEmployee(String id) {
-    return employeeRepository.findById(id).orElse(null);
+  public Optional<Employee> findEmployeeById(String id) {
+    return employeeRepository.findById(id);
   }
   
   public List<Employee> getAllEmployees() {
     return employeeRepository.findAll();
   }
   
-  public boolean updateEmployee(String id, String name, String position, String department) {
-    Employee existingEmployee = employeeRepository.findById(id).orElse(null);
-    if (existingEmployee != null) {
-      existingEmployee.setName(name);
-      existingEmployee.setPosition(position);
-      existingEmployee.setDepartment(department);
-      return employeeRepository.update(existingEmployee);
-    }
-    return false;
+  public void removeEmployee(String id) {
+    employeeRepository.deleteById(id);
   }
   
-  public boolean deleteEmployee(String id) {
-    return employeeRepository.deleteById(id);
+  public void updateEmployee(String id, String name, String position, String department) {
+    Optional<Employee> employeeOpt = employeeRepository.findById(id);
+    if (employeeOpt.isPresent()) {
+      Employee employee = employeeOpt.get();
+      employee.setName(name);
+      employee.setPosition(position);
+      employee.setDepartment(department);
+      employeeRepository.update(employee);
+    } else {
+      System.out.println("Employee not found");
+    }
   }
 }

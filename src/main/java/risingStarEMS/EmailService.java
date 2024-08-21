@@ -1,6 +1,6 @@
 package risingStarEMS;
 
 public interface EmailService {
-  void sendPasswordResetEmail(User user);
+  void sendPasswordResetEmail(String recipient, String newPassword);
   void sendPasswordChangedEmail(User user);
 }

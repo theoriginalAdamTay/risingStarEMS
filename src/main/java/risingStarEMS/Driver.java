@@ -2,6 +2,7 @@ package risingStarEMS;
 
 import java.util.Scanner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class Driver {
   public static void Main(String[] args) {
@@ -27,7 +28,7 @@ public class Driver {
       scanner.nextLine();
       switch(choice) {
         case 1:
-          registerUser(scanner, userService);
+          registerEmployee(scanner, userService);
           break;
         case 2:
           loginUser(scanner, userService);
@@ -67,7 +68,7 @@ public class Driver {
     String username = scanner.nextLine();
     System.out.print("Enter desired password for new employee: ");
     String password = scanner.nextLine();
-    String result = userService.registerUser(username, password);
+    String result = userService.register(username, password);
     System.out.println(result);
   }
   

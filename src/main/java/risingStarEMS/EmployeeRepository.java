@@ -7,6 +7,6 @@ public interface EmployeeRepository {
   Employee save(Employee employee);
   Optional<Employee> findById(String id);
   List<Employee> findAll();
-  boolean deleteById(String id);
-  boolean update(Employee employee);
+  void deleteById(String id);
+  void update(Employee employee);
 }

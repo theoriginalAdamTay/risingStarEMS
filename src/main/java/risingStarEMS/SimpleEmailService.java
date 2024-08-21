@@ -2,9 +2,12 @@ package risingStarEMS;
 
 public class SimpleEmailService implements EmailService {
   @Override
-  public void sendPasswordResetEmail(User user) {
-    String message = String.format("Password reset link sent to user %s. Reset link: https://example.com/reset?user=%s", user.getUsername(), user.getUsername());
-    System.out.println(message);
+  public void sendPasswordResetEmail(String recipient, String newPassword) {
+    String subject = "Password reset";
+    String body = String.format("Your new password is: " + newPassword);
+    System.out.println("Sending email to " + recipient);
+    System.out.println("Subject: " + subject);
+    System.out.println("Body: " + body);
   }
   
   @Override
