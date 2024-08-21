@@ -1,6 +1,7 @@
 package risingStarEMS;
 
 import java.util.Scanner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class Driver {
   public static void Main(String[] args) {
