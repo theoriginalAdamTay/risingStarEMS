@@ -26,7 +26,7 @@ class TestEmployeeRepository {
   
   @Test
   void SaveEmployeeSuccessfully() {
-    Employee employee = new Employee();
+    Employee employee = new Employee(null, null, null, null);
     employee.setName("Jimothy Dough");
     employee.setPosition("HR Manager");
     employee.setDepartment("Human Resources");
@@ -44,7 +44,7 @@ class TestEmployeeRepository {
   
   @Test
   void FindEmployeeByIDSuccessfully() {
-    Employee employee = new Employee();
+    Employee employee = new Employee(null, null, null, null);
     employee.setId("1");
     employee.setName("Jimothy Dough");
     employee.setPosition("HR Manager");
@@ -65,12 +65,12 @@ class TestEmployeeRepository {
   
   @Test
   void FindAllSuccessfully() {
-    Employee employee1 = new Employee();
+    Employee employee1 = new Employee(null, null, null, null);
     employee1.setId("1");
     employee1.setName("Jimothy Dough");
     employee1.setPosition("HR Manager");
     employee1.setDepartment("Human Resources");
-    Employee employee2 = new Employee();
+    Employee employee2 = new Employee(null, null, null, null);
     employee2.setId("2");
     employee2.setName("Jimian Dougheth");
     employee2.setPosition("Payroll Accountant");

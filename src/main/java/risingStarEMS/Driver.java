@@ -3,9 +3,18 @@ package risingStarEMS;
 import java.util.Scanner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+/** A class for compiling all methods into a full program, containing the main method.
+ * 
+ * @author Adam Tay
+ * @version 1.0 unstable
+ *
+ */
 public class Driver {
-  public static void Main(String[] args) { // Main method
+  /**
+   * The program's main method.
+   * @param args The supplied command line arguments as an array of type String.
+   */
+  public static void Main(String[] args) {
     UserRepository userRepository = new InMemoryUserRepository(); // Create new in-memory user repository
     EmailService emailService = new SimpleEmailService(); // Create new simple email service for testing password reset/change
     PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); // Create new password encoder using Spring Security
@@ -14,9 +23,13 @@ public class Driver {
     runApplication(userService); // Method used to run application functionality
   }
   
+  /**
+   * A method used as part of the main method to facilitate running of the program.
+   * @param userService The program's user service which provides an in-memory user repository, simple email service and password encoder.
+   */
   private static void runApplication(UserService userService) {
     Scanner scanner = new Scanner(System.in); // Create new Scanner object allowing for user input
-    while(true) { // Always execute until program function chosen or program is quit
+    while (true) { // Always execute until program function chosen or program is quit
       System.out.println("\nWelcome to Rising Star Employee Management System");
       System.out.println("1. Register a new employee");
       System.out.println("2. Login as an existing user");
@@ -25,9 +38,9 @@ public class Driver {
       System.out.println("5. Reset a forgotten password");
       System.out.println("6. Exit the program");
       System.out.println("Please select an option: ");
-      int choice = scanner.nextInt(); // User inputs choice as integer which is stored as variable choice
+      int choice = scanner.nextInt(); // User input taken for choice
       scanner.nextLine();
-      switch(choice) { // Switch case statement which selects function based on value of choice variable
+      switch (choice) { // Switch case statement dependent on choice value
         case 1:
           registerEmployee(scanner, userService); // Execute function for new user registration
           break;
@@ -41,7 +54,7 @@ public class Driver {
           logoutUser(scanner, userService); // Execute function for user logout
           break;
         case 5:
-          forgotPassword(scanner, userService); // Execute function for resetting a forgotten password
+          forgotPassword(scanner, userService); // Execute function for forgotten password reset
           break;
         case 6:
           if (confirmBeforeQuit(scanner)) { // Check if user has confirmed quitting program
@@ -58,13 +71,18 @@ public class Driver {
     }
   }
   
-  private static boolean confirmBeforeQuit(Scanner scanner) { // Function for prompting confirmation before quitting program
+  /**
+   * A function which prompts the user to confirm before quitting the program.
+   * @param scanner An instance of a Scanner object allowing for user input.
+   * @return True if the user input is "yes" or "y", otherwise false.
+   */
+  private static boolean confirmBeforeQuit(Scanner scanner) { // Function for prompting confirm before quit
     System.out.print("Are you sure you want to quit? (yes/no): ");
     String input = scanner.nextLine().trim().toLowerCase();
-    return "yes".equals(input) || "y".equals(input); // Return true if input is "yes" or "y", otherwise false
+    return "yes".equals(input) || "y".equals(input); // Return true if input is "yes" or "y"
   }
   
-  private static void registerEmployee(Scanner scanner, UserService userService) { // Function for new user registration
+  private static void registerEmployee(Scanner scanner, UserService userService) { // Function for user registration
     System.out.print("Enter desired username for new employee: ");
     String username = scanner.nextLine();
     System.out.print("Enter desired password for new employee: ");
