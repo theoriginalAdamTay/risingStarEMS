@@ -3,7 +3,7 @@ package risingStarEMS;
 import java.util.Scanner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-/** A class for compiling all methods into a full program, containing the main method.
+/** A class from which all functions are run including the main method.
  * 
  * @author Adam Tay
  * @version 1.0 unstable
@@ -14,13 +14,12 @@ public class Driver {
    * The program's main method.
    * @param args The supplied command line arguments as an array of type String.
    */
-  public static void Main(String[] args) {
-    UserRepository userRepository = new InMemoryUserRepository(); // Create new in-memory user repository
-    EmailService emailService = new SimpleEmailService(); // Create new simple email service for testing password reset/change
-    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); // Create new password encoder using Spring Security
-    // Create new user service using in-memory user repository, simple email service and password encoder
+  public static void main(String[] args) {
+    UserRepository userRepository = new InMemoryUserRepository();
+    EmailService emailService = new SimpleEmailService();
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     UserService userService = new UserService(userRepository, emailService, passwordEncoder);
-    runApplication(userService); // Method used to run application functionality
+    runApplication(userService);
   }
   
   /**
@@ -28,8 +27,8 @@ public class Driver {
    * @param userService The program's user service which provides an in-memory user repository, simple email service and password encoder.
    */
   private static void runApplication(UserService userService) {
-    Scanner scanner = new Scanner(System.in); // Create new Scanner object allowing for user input
-    while (true) { // Always execute until program function chosen or program is quit
+    Scanner scanner = new Scanner(System.in);
+    while (true) {
       System.out.println("\nWelcome to Rising Star Employee Management System");
       System.out.println("1. Register a new employee");
       System.out.println("2. Login as an existing user");
@@ -38,34 +37,34 @@ public class Driver {
       System.out.println("5. Reset a forgotten password");
       System.out.println("6. Exit the program");
       System.out.println("Please select an option: ");
-      int choice = scanner.nextInt(); // User input taken for choice
+      int choice = scanner.nextInt();
       scanner.nextLine();
-      switch (choice) { // Switch case statement dependent on choice value
+      switch (choice) {
         case 1:
-          registerEmployee(scanner, userService); // Execute function for new user registration
+          registerEmployee(scanner, userService);
           break;
         case 2:
-          loginUser(scanner, userService); // Execute function for user login
+          loginUser(scanner, userService);
           break;
         case 3:
-          changePassword(scanner, userService); // Execute function for changing a user's password
+          changePassword(scanner, userService);
           break;
         case 4:
-          logoutUser(scanner, userService); // Execute function for user logout
+          logoutUser(scanner, userService);
           break;
         case 5:
-          forgotPassword(scanner, userService); // Execute function for forgotten password reset
+          forgotPassword(scanner, userService);
           break;
         case 6:
-          if (confirmBeforeQuit(scanner)) { // Check if user has confirmed quitting program
+          if (confirmBeforeQuit(scanner)) { 
             System.out.println("Exiting Rising Star EMS. Goodbye!");
-            scanner.close(); // Close Scanner object as no longer required
+            scanner.close();
             return;
           } else {
             System.out.println("Continuing the application...");
           }
           break;
-        default: // Default user input
+        default:
           System.out.println("Invalid input. Please try again");
       }
     }
@@ -82,7 +81,12 @@ public class Driver {
     return "yes".equals(input) || "y".equals(input); // Return true if input is "yes" or "y"
   }
   
-  private static void registerEmployee(Scanner scanner, UserService userService) { // Function for user registration
+  /**
+   * A function for registering a new user.
+   * @param scanner An instance of a Scanner object allowing for user input.
+   * @param userService An instance of a UserService object facilitating user registration functionality.
+   */
+  private static void registerEmployee(Scanner scanner, UserService userService) {
     System.out.print("Enter desired username for new employee: ");
     String username = scanner.nextLine();
     System.out.print("Enter desired password for new employee: ");
@@ -91,7 +95,12 @@ public class Driver {
     System.out.println(result);
   }
   
-  private static void loginUser(Scanner scanner, UserService userService) { // Function for logging in as an existing user
+  /**
+   * A function for logging in as an existing user.
+   * @param scanner An instance of a Scanner object allowing for user input.
+   * @param userService An instance of a UserService object facilitating user login functionality.
+   */
+  private static void loginUser(Scanner scanner, UserService userService) {
     System.out.print("Enter username: ");
     String username = scanner.nextLine();
     System.out.print("Enter password: ");
@@ -100,7 +109,12 @@ public class Driver {
     System.out.println(result);
   }
   
-  private static void changePassword(Scanner scanner, UserService userService) { // Function for changing a user's password
+  /**
+   * A function for changing a user's password.
+   * @param scanner An instance of a Scanner object allowing for user input.
+   * @param userService An instance of a UserService object facilitating password change functionality.
+   */
+  private static void changePassword(Scanner scanner, UserService userService) {
     System.out.print("Enter username: ");
     String username = scanner.nextLine();
     System.out.print("Enter current password: ");
@@ -111,14 +125,24 @@ public class Driver {
     System.out.println(result);
   }
   
-  private static void logoutUser(Scanner scanner, UserService userService) { // Function for user logout
+  /**
+   * A function for logging out a user.
+   * @param scanner An instance of a Scanner object allowing for user input.
+   * @param userService An instance of a UserService object facilitating user logout functionality.
+   */
+  private static void logoutUser(Scanner scanner, UserService userService) {
     System.out.print("Enter username of user to log out: ");
     String username = scanner.nextLine();
     String result = userService.logout(username);
     System.out.println(result);
   }
   
-  private static void forgotPassword(Scanner scanner, UserService userService) { // Function for resetting a forgotten password
+  /**
+   * A function for resetting a forgotten password.
+   * @param scanner An instance of a Scanner object allowing for user input.
+   * @param userService An instance of a UserService object facilitating password reset functionality. 
+   */
+  private static void forgotPassword(Scanner scanner, UserService userService) {
     System.out.print("Enter username of account with forgotten password: ");
     String username = scanner.nextLine();
     String result = userService.forgotPassword(username);

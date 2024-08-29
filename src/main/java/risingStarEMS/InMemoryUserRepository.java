@@ -6,7 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * An implementation of an in-memory user repository making use of a hash map in the absence of a database.
+ * @author Adam Tay
+ * @version 1.0 unstable
+ */
 public class InMemoryUserRepository implements UserRepository {
+  /**
+   * A hash map which maps String IDs to User objects.
+   */
   private final Map<String, User> userMap = new HashMap<>();
   
   @Override

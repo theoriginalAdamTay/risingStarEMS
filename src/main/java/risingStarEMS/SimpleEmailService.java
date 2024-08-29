@@ -1,5 +1,11 @@
 package risingStarEMS;
 
+/**
+ * An implementation of a simple email service allowing for sending emails notifying users of passwords being changed or reset.
+ * @author Adam Tay
+ * @version 1.0 unstable
+ *
+ */
 public class SimpleEmailService implements EmailService {
   @Override
   public void sendPasswordResetEmail(String recipient, String newPassword) {
