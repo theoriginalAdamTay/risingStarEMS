@@ -4,7 +4,7 @@ Rising Star EMS is a simple text-based employee management system built in Java 
 The project is in a complete state with .jar executable in the target directory, however there are problems with Spring Security dependencies used for password encoding functionality which are preventing the program from running.
 ## Authors
 Adam Tay
-</br>[@theoriginalAdamTay](github.com/theoriginalAdamTay)
+</br>[@theoriginalAdamTay](https://github.com/theoriginalAdamTay)
 ## Version history
 * 1.0 unstable
   *  Full unstable release of the employee management system.
@@ -13,4 +13,4 @@ Adam Tay
 * 0.1
   * Initial release, implementing login system functionality from the associated feature branch.
 ## Acknowledgements
-Code reviewed by [@davidhilton68](github.com/davidhilton68)
+Code reviewed by [@davidhilton68](https://github.com/davidhilton68)
